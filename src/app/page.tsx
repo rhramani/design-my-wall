@@ -40,7 +40,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex h-screen bg-white overflow-hidden font-sans antialiased text-gray-900">
+    <main className="flex flex-col lg:flex-row h-screen bg-white overflow-hidden font-sans antialiased text-gray-900">
       <ControlsPanel
         settings={settings}
         setSettings={setSettings}
@@ -51,12 +51,14 @@ export default function Home() {
         onQuickDemo={handleQuickDemo}
       />
       
-      <section className="flex-1 flex flex-col items-center justify-center p-4 lg:p-8 overflow-hidden">
-        <TileCanvas
-          wallImage={wallImage}
-          tileImage={tileImage}
-          settings={settings}
-        />
+      <section className="flex-1 flex flex-col items-center justify-center p-2 sm:p-4 lg:p-8 overflow-hidden bg-gray-50">
+        <div className="w-full h-full max-w-5xl mx-auto flex items-center justify-center">
+          <TileCanvas
+            wallImage={wallImage}
+            tileImage={tileImage}
+            settings={settings}
+          />
+        </div>
       </section>
     </main>
   );

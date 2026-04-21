@@ -7,8 +7,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Tile Visualization Tool",
-  description: "Upload your wall and tile images to visualize your next renovation project in real-time.",
+  title: "Wallify Studio",
+  description: "The ultimate wall & tile visualization platform for modern renovation projects.",
 };
 
 export default function RootLayout({

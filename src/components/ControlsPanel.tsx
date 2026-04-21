@@ -31,14 +31,14 @@ const ControlsPanel: React.FC<ControlsPanelProps> = ({
   };
 
   return (
-    <aside className="w-full lg:w-80 bg-[#f9fafb] border-r border-[#e5e7eb] flex flex-col h-full overflow-y-auto custom-scrollbar">
-      <div className="p-6 space-y-6">
+    <aside className="w-full lg:w-80 bg-[#f9fafb] border-b lg:border-b-0 lg:border-r border-[#e5e7eb] flex flex-col h-[40vh] lg:h-full shrink-0 overflow-y-auto custom-scrollbar transition-all">
+      <div className="p-4 space-y-4">
         {/* Logo Section */}
         <div className="flex items-center gap-2 mb-2">
           <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
             <Box className="text-white" size={20} />
           </div>
-          <h1 className="text-xl font-bold text-gray-900 tracking-tight">TileViz Pro</h1>
+          <h1 className="text-xl font-bold text-gray-900 tracking-tight">Wallify Studio</h1>
         </div>
 
         {/* Image Upload Area */}
@@ -48,11 +48,11 @@ const ControlsPanel: React.FC<ControlsPanelProps> = ({
             <label className="text-xs font-bold text-gray-500 uppercase tracking-widest">Wall Image</label>
             {!wallImage ? (
               <div 
-                className="group border-2 border-dashed border-gray-200 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-indigo-400 hover:bg-white transition-all"
+                className="group border-2 border-dashed border-gray-200 rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer hover:border-indigo-400 hover:bg-white transition-all"
                 onClick={() => document.getElementById('wall-input')?.click()}
               >
-                <Upload size={24} className="text-indigo-500 mb-2 group-hover:scale-110 transition-transform" />
-                <p className="text-[10px] text-gray-400 font-medium text-center uppercase tracking-tighter">Click to upload wall</p>
+                <Upload size={20} className="text-indigo-500 mb-1 group-hover:scale-110 transition-transform" />
+                <p className="text-[10px] text-gray-400 font-medium text-center uppercase tracking-tighter">Upload Wall</p>
                 <input id="wall-input" type="file" hidden onChange={(e) => handleFileChange(e, 'wall')} accept="image/*" />
               </div>
             ) : (
@@ -75,11 +75,11 @@ const ControlsPanel: React.FC<ControlsPanelProps> = ({
             <label className="text-xs font-bold text-gray-500 uppercase tracking-widest">Tile Texture</label>
             {!tileImage ? (
               <div 
-                className="group border-2 border-dashed border-gray-200 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-indigo-400 hover:bg-white transition-all"
+                className="group border-2 border-dashed border-gray-200 rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer hover:border-indigo-400 hover:bg-white transition-all"
                 onClick={() => document.getElementById('tile-input')?.click()}
               >
-                <Grid size={24} className="text-indigo-500 mb-2 group-hover:scale-110 transition-transform" />
-                <p className="text-[10px] text-gray-400 font-medium text-center uppercase tracking-tighter">Choose pattern</p>
+                <Grid size={20} className="text-indigo-500 mb-1 group-hover:scale-110 transition-transform" />
+                <p className="text-[10px] text-gray-400 font-medium text-center uppercase tracking-tighter">Choose Tile</p>
                 <input id="tile-input" type="file" hidden onChange={(e) => handleFileChange(e, 'tile')} accept="image/*" />
               </div>
             ) : (
@@ -98,10 +98,10 @@ const ControlsPanel: React.FC<ControlsPanelProps> = ({
           </div>
         </div>
 
-        <div className="h-px bg-gray-200 my-4" />
+        <div className="h-px bg-gray-200 my-2" />
 
         {/* Precision Controls */}
-        <div className="space-y-5">
+        <div className="space-y-4">
           {/* Tile Size */}
           <div className="space-y-2">
             <label className="text-xs font-bold text-gray-600 block">Tile Dimensions (px)</label>
@@ -228,15 +228,15 @@ const ControlsPanel: React.FC<ControlsPanelProps> = ({
         </div>
 
         {/* Action Buttons */}
-        <div className="pt-6 flex flex-col gap-3">
+        <div className="pt-2 flex flex-col gap-2">
           <button 
-            className="w-full py-3 bg-white text-indigo-600 text-xs font-bold rounded-xl border border-indigo-100 shadow-sm hover:shadow-md hover:bg-indigo-50 transition-all flex items-center justify-center gap-2 group" 
+            className="w-full py-2.5 bg-white text-indigo-600 text-xs font-bold rounded-xl border border-indigo-100 shadow-sm hover:shadow-md hover:bg-indigo-50 transition-all flex items-center justify-center gap-2 group" 
             onClick={onQuickDemo}
           >
             <span className="group-hover:rotate-12 transition-transform">✨</span> Quick Demo
           </button>
           <button 
-            className="w-full py-3 bg-gray-100 text-gray-500 text-xs font-bold rounded-xl hover:bg-gray-200 transition-all flex items-center justify-center gap-2" 
+            className="w-full py-2.5 bg-gray-100 text-gray-500 text-xs font-bold rounded-xl hover:bg-gray-200 transition-all flex items-center justify-center gap-2" 
             onClick={onReset}
           >
             <RotateCcw size={14} /> Reset All

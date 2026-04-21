@@ -97,7 +97,7 @@ const TileCanvas = forwardRef<TileCanvasRef, TileCanvasProps>(({
     }
 
     const wallImg = wallImgRef.current;
-    const ratio = Math.min(canvas.width / wallImg.width, canvas.height / wallImg.height);
+    const ratio = Math.min(canvas.width / wallImg.width, canvas.height / wallImg.height) * 0.9;
     const w = wallImg.width * ratio * scale;
     const h = wallImg.height * ratio * scale;
     const x = (canvas.width - w) / 2 + offset.x;
@@ -200,13 +200,13 @@ const TileCanvas = forwardRef<TileCanvasRef, TileCanvasProps>(({
   };
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-8 bg-[#f3f4f6] relative overflow-hidden">
-      <div className="relative group">
+    <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-8 bg-[#f3f4f6] relative overflow-hidden gap-6">
+      <div className="relative group flex items-center justify-center">
         <canvas 
           ref={canvasRef} 
-          width={900} 
-          height={650} 
-          className={`bg-white shadow-2xl rounded-xl display-block ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+          width={1200} 
+          height={800} 
+          className={`bg-white shadow-2xl rounded-xl max-w-full max-h-full w-auto h-auto object-contain ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
@@ -217,40 +217,42 @@ const TileCanvas = forwardRef<TileCanvasRef, TileCanvasProps>(({
             <Loader2 className="animate-spin text-indigo-600" size={48} />
           </div>
         )}
+      </div>
 
-        {/* Floating Zoom Controls */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 p-2 bg-white/90 backdrop-blur-md rounded-full shadow-lg border border-gray-100 z-20">
+      {/* Action Controls - Now positioned below the image */}
+      <div className="flex items-center gap-2 p-2 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-white/50 z-20">
+        <div className="flex items-center px-2">
           <button 
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-600" 
+            className="p-2 cursor-pointer hover:bg-gray-100 rounded-full transition-colors text-gray-600" 
             onClick={() => setScale(s => Math.min(s + 0.1, 3))} 
             title="Zoom In"
           >
             <ZoomIn size={20} />
           </button>
           <button 
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-600" 
+            className="p-2 cursor-pointer hover:bg-gray-100 rounded-full transition-colors text-gray-600" 
             onClick={() => setScale(s => Math.max(s - 0.1, 0.5))} 
             title="Zoom Out"
           >
             <ZoomOut size={20} />
           </button>
-          <div className="w-[1px] h-6 bg-gray-200 mx-1" />
-          <button 
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-600" 
-            onClick={() => { setScale(1); setOffset({ x: 0, y: 0 }); }} 
-            title="Reset View"
-          >
-            <Maximize size={20} />
-          </button>
-          <div className="w-[1px] h-6 bg-gray-200 mx-1" />
-          <button 
-            className="px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-full hover:bg-indigo-700 transition-all flex items-center gap-2 shadow-md hover:shadow-lg disabled:opacity-50"
-            onClick={handleDownload}
-            disabled={!imagesReady.wall}
-          >
-            <Download size={16} /> Download
-          </button>
         </div>
+        <div className="w-[1px] h-6 bg-gray-200 mx-1" />
+        <button 
+          className="p-2 cursor-pointer hover:bg-gray-100 rounded-full transition-colors text-gray-600" 
+          onClick={() => { setScale(1); setOffset({ x: 0, y: 0 }); }} 
+          title="Reset View"
+        >
+          <Maximize size={20} />
+        </button>
+        <div className="w-[1px] h-6 bg-gray-200 mx-1" />
+        <button 
+          className="px-6 py-2.5 cursor-pointer bg-indigo-600 text-white text-sm font-bold rounded-xl hover:bg-indigo-700 transition-all flex items-center gap-2 shadow-lg shadow-indigo-200 disabled:opacity-50"
+          onClick={handleDownload}
+          disabled={!imagesReady.wall}
+        >
+          <Download size={18} /> Download
+        </button>
       </div>
     </div>
   );
