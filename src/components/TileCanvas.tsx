@@ -237,15 +237,7 @@ const TileCanvas = forwardRef<TileCanvasRef, TileCanvasProps>(({
             <ZoomOut size={20} />
           </button>
         </div>
-        <div className="w-[1px] h-6 bg-gray-200 mx-1" />
-        <button 
-          className="p-2 cursor-pointer hover:bg-gray-100 rounded-full transition-colors text-gray-600" 
-          onClick={() => { setScale(1); setOffset({ x: 0, y: 0 }); }} 
-          title="Reset View"
-        >
-          <Maximize size={20} />
-        </button>
-        <div className="w-[1px] h-6 bg-gray-200 mx-1" />
+        <div className="w-[1px] h-6 bg-gray-300 mx-3" />
         <button 
           className="px-6 py-2.5 cursor-pointer bg-indigo-600 text-white text-sm font-bold rounded-xl hover:bg-indigo-700 transition-all flex items-center gap-2 shadow-lg shadow-indigo-200 disabled:opacity-50"
           onClick={handleDownload}
