@@ -144,10 +144,25 @@ const TileCanvas = forwardRef<TileCanvasRef, TileCanvasProps>(({
       ctx.rect(sX, sY, gW, gH);
       ctx.clip();
 
-      // 2. Draw the entire gap background color at once for a cleaner look
+      // 2. Draw the gap color only in the gap areas (grout)
       if (gapX > 0 || gapY > 0) {
         ctx.fillStyle = settings.gapColor;
-        ctx.fillRect(sX, sY, gW, gH);
+        ctx.beginPath();
+        
+        // Vertical gaps
+        if (gapX > 0) {
+          for (let currX = sX; currX + tW < sX + gW; currX += stepX) {
+            ctx.rect(Math.round(currX + tW), sY, gapX, gH);
+          }
+        }
+        
+        // Horizontal gaps
+        if (gapY > 0) {
+          for (let currY = sY; currY + tH < sY + gH; currY += stepY) {
+            ctx.rect(sX, Math.round(currY + tH), gW, gapY);
+          }
+        }
+        ctx.fill();
       }
 
       // 3. Draw Tiles
